@@ -19,6 +19,8 @@ def postData(url, data=None, headers=None, cookies=None, retry=5, timeout=10):
     http.mount("https://", adapter)
     http.mount("http://", adapter)
 
-    response = http.post(url, data=data, headers=headers, cookies=cookies, timeout=timeout)
+    response = http.post(
+        url, data=data, headers=headers, cookies=cookies, timeout=timeout
+    )
 
     return response

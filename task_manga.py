@@ -1,22 +1,27 @@
 # -*- coding: utf-8 -*-
 
 # 定时
-'''
+"""
 0 8 * * * task_manga.py
-'''
+"""
 
 import sys
 import time
 
 from utilCommon import printT, postData
 from utilLogin import login
-from utilSendNotify import send
+
+try:
+    from sendNotify import send
+except:
+    from utilSendNotify import send
 
 msg = ""
 
 # 登陆
 login_status, b = login()
 if not login_status:
+    send("哔哩哔哩小助手", "账号登陆失败！")
     sys.exit()
 
 headers = {
@@ -31,7 +36,7 @@ r = postData(
     "https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn",
     data={"platform": "android"},
     headers=headers,
-    cookies=b.get_cookies()
+    cookies=b.get_cookies(),
 )
 
 printT("响应: " + r.text)
@@ -49,7 +54,7 @@ msg = msg + "哔哩哔哩漫画签到信息: "
 r = postData(
     "https://manga.bilibili.com/twirp/activity.v1.Activity/GetClockInInfo",
     headers=headers,
-    cookies=b.get_cookies()
+    cookies=b.get_cookies(),
 )
 
 printT("累计签到" + str(r.json()["data"]["day_count"]) + "天🐶")
