@@ -94,7 +94,6 @@ def message(str_msg):
     message_info = "{}\n{}".format(message_info, str_msg)
     sys.stdout.flush()
 
-
 def bark(title, content):
     print("\n")
     if not BARK:
@@ -111,7 +110,6 @@ def bark(title, content):
     except:
         print('推送失败！')
 
-
 def serverJ(title, content):
     print("\n")
     if not SCKEY:
@@ -127,7 +125,6 @@ def serverJ(title, content):
         print('推送成功！')
     else:
         print('推送失败！')
-
 
 # tg通知
 def telegram_bot(title, content):
@@ -161,7 +158,6 @@ def telegram_bot(title, content):
     except Exception as e:
         print(e)
 
-
 def dingding_bot(title, content):
     timestamp = str(round(time.time() * 1000))  # 时间戳
     secret_enc = DD_BOT_SECRET.encode('utf-8')
@@ -182,7 +178,6 @@ def dingding_bot(title, content):
     else:
         print('推送失败！')
 
-
 def coolpush_bot(title, content):
     print("\n")
     if not QQ_SKEY or not QQ_MODE:
@@ -196,8 +191,6 @@ def coolpush_bot(title, content):
         print('推送成功！')
     else:
         print('推送失败！')
-
-
 # push推送
 def pushplus_bot(title, content):
     try:
@@ -221,8 +214,6 @@ def pushplus_bot(title, content):
             print('推送失败！')
     except Exception as e:
         print(e)
-
-
 # 企业微信 APP 推送
 def wecom_app(title, content):
     try:
@@ -254,7 +245,6 @@ def wecom_app(title, content):
             print('推送失败！错误信息如下：\n', response)
     except Exception as e:
         print(e)
-
 
 class WeCom:
     def __init__(self, corpid, corpsecret, agentid):
@@ -310,7 +300,6 @@ class WeCom:
         respone = requests.post(send_url, send_msges)
         respone = respone.json()
         return respone["errmsg"]
-
 
 def send(title, content):
     """
