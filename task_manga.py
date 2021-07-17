@@ -2,7 +2,7 @@
 
 # 定时
 '''
-0 8 * * * manga.py
+0 8 * * * task_manga.py
 '''
 
 import sys
